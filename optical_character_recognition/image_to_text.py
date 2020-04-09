@@ -67,8 +67,9 @@ def main(args):
     window_name = msg
     
     # Displaying the image
-    cv2.imshow(window_name, image)
-    cv2.waitKey(0)
+    if args.show:
+        cv2.imshow(window_name, image)
+        cv2.waitKey(0)
 
 if __name__ == '__main__':
     from argparse import ArgumentParser
@@ -84,6 +85,11 @@ if __name__ == '__main__':
                         help="Url of image to perform OCR.",
                         type=str,
                         default=None)
+
+    parser.add_argument('-s', '--show',
+                        help="Whether to show image.",
+                        default=False,
+                        action='store_true')
 
     args = parser.parse_args()
     main(args)
